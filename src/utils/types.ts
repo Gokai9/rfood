@@ -1,4 +1,6 @@
-interface Idessert {
+import { Dispatch, SetStateAction } from "react";
+
+export interface Idessert {
     "image": {
         "thumbnail": string;
         "mobile": string;
@@ -10,7 +12,7 @@ interface Idessert {
    "price": number
 }
 export interface  Ide {
-    "dat": Idessert
+    "prod": Idessert
 }
 
 export interface ICart {
@@ -26,5 +28,8 @@ export interface ICart {
 }
 
 export interface Icarts {
-    "carts": ICart[]
+    "cartsD": ICart[]
+}
+export interface CC {
+    handleCart: (ic: ICart) => void
 }

@@ -6,3 +6,11 @@
     border: 0.2rem solid brown;
 
 }
+.btn {
+    border: 1rem;
+    border-radius: 10rem;
+    background-color: aliceblue;
+    color: black;
+    position: relative;
+    margin: 0 0 -118px -170px;
+}

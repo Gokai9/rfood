@@ -1,15 +1,23 @@
 import AddtoCart from './AddtoCart';
 import styles from './Product.module.css'
-import { Ide } from '../utils/types';
+import { Idessert, CC, ICart } from '../utils/types';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function Product({dat}:Ide) {
+interface BB {
+    prod: Idessert,
+    handleCart: (ic: ICart) => void
+}
+
+export default function Product({prod, handleCart}: BB) {
+
+    
     return (
         <div className={styles.de}>
-            <img className={styles.imag} src={`${"."}${dat.image.desktop}`} alt={dat.name} height={250} width={250}/>
-            <AddtoCart />
-            <p>{dat.category}</p>
-            <p>{dat.name}</p>
-            <p>{dat.price}</p>
+            <img className={styles.imag} src={`${"."}${prod.image.desktop}`} alt={prod.name} height={250} width={250}/>
+            <button className={styles.btn} onClick={() => handleCart({image: {...prod.image}, name: prod.name, amount: 1, price: prod.price})}>Add to Cart</button>
+            <p>{prod.category}</p>
+            <p>{prod.name}</p>
+            <p>{prod.price}</p>
         </div>
     )
 }
