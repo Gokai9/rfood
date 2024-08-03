@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 
 export interface Idessert {
     "image": {
@@ -16,6 +15,7 @@ export interface  Ide {
 }
 
 export interface ICart {
+    id: string,
     "image": {
         "thumbnail": string;
         "mobile": string;
@@ -28,8 +28,11 @@ export interface ICart {
 }
 
 export interface Icarts {
-    "cartsD": ICart[]
+    "cartsD": ICart[],
+    deleteCart: (id: string) => void
 }
 export interface CC {
-    handleCart: (ic: ICart) => void
+    handleCart: (ic: ICart) => void,
+    updateAmount: (id: string, amount: number) => void,
+    deleteCart: (id: string) => void
 }

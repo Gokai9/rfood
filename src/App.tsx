@@ -1,38 +1,34 @@
 import { useState } from 'react'
 import './App.css'
 import Carts from './component/Carts'
-import Desserts from './component/ProductsLists'
-import { Icarts, ICart } from './utils/types'
+import DessertsList from './component/DessertsList'
+import { ICart} from './utils/types'
 
 
 function App() {
   const [cartsD, setCartsD] = useState<ICart[]>([])
-  const [addAmount, setAddAmount] = useState(1)
-  const [show, setShow] = useState(false)
-  const [disabled, setDisabled] = useState(false)
-    const substractAmount = () => {
-        setAddAmount(addAmount - 1)
-        if (addAmount < 1) {
-          setDisabled(!disabled)
-        }
-    }
-    const addOne = () => {
-        setAddAmount(addAmount + 1)
-    }
+  
+  const updateAmount = (id:string, amount: number) => {
+    const cart = cartsD.filter(c => {
+      if (c.id === id) {
+        c.amount += amount
+        return c
+      }
+      return c
+    })
+    setCartsD([...cart])
+  }
   const handleCart = (ic: ICart) => {
     setCartsD([...cartsD, ic])
-    setShow(!show)
 }
-  const deleteCard = () => {
-
-  }
-  const updateAmount = (amount: number) => {
-    
+  const deleteCart = (id: string) => {
+    const carts = cartsD.filter(cart => cart.id !== id)
+    setCartsD(carts)
   }
   return (
     <div className='app'>
-      <Desserts handleCart={handleCart}/>
-      <Carts cartsD={cartsD} />
+      <DessertsList handleCart={handleCart} updateAmount={updateAmount} deleteCart={deleteCart}/>
+      <Carts cartsD={cartsD} deleteCart={deleteCart}/>
     </div>
   )
 }

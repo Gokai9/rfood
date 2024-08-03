@@ -3,14 +3,14 @@ import EmptyCart from '../../public/assets/images/illustration-empty-cart.svg'
 import { Icarts } from '../utils/types'
 import Cart from './Cart'
 
-export default function Carts({cartsD}: Icarts) {
+export default function Carts({cartsD, deleteCart}: Icarts) {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Your Cart ({cartsD.length})</h1>
             {cartsD.length > 0 ?
             <div className={styles.scart}>
-            {cartsD.map((c) => <Cart cart={c}/>)}
-            <p>Order total</p>
+            {cartsD.map((c) => <Cart key={c.id} cart={c} deleteCart={deleteCart}/>)}
+            <p><span>Order Total: </span> <span>{}</span></p>
             <button>Confirm order</button>
             </div>: 
             <div className={styles.empty}>
