@@ -1,1 +1,7 @@
-
+.btn {
+    background-color: orangered;
+    border-radius: 20px;
+    border: solid 0;
+    padding: 6px 0;
+    margin: 10px 0;
+}

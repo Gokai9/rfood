@@ -1,0 +1,19 @@
+.container {
+    position: absolute;
+    z-index: 2;
+    margin: 0 0 0 -500px;
+    background-color: white;
+    padding: 12px;
+    width: 400px;
+}
+
+.cmodal {
+    background-color: burlywood;
+    border-radius: 4px;
+}
+
+.order {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+}

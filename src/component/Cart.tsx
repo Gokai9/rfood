@@ -17,7 +17,7 @@ export default function Cart({cart, deleteCart}: I) {
                 <span>{toFloat(cart.amount * cart.price)}</span>
                 </p>
             </div>
-            <button onClick={() => deleteCart(cart.id)}>X</button>
+            <button className={styles.btn} onClick={() => deleteCart(cart.id)}>X</button>
         </div>
     )
 }

@@ -26,7 +26,7 @@ export default function Product({prod, handleCart, updateAmount, deleteCart}: BB
         updateAmount(id, 1)
     }
     const id = window.btoa(prod.category + prod.name)
-    const but = <button className={styles.btn}><input type='button' value={'-'} onClick={() => reduceOne(id)} /><span>{addAmount}</span><input type='button' value={'+'} onClick={() => addOne(id)}/></button>
+    const but = <button className={styles.btnone}><input type='button' value={'-'} onClick={() => reduceOne(id)} /><span>{addAmount}</span><input type='button' value={'+'} onClick={() => addOne(id)}/></button>
     const addbut = <button className={styles.btn} 
     onClick={() => {
         handleCart({id: id, image: {...prod.image}, name: prod.name, amount: 1, price: prod.price})

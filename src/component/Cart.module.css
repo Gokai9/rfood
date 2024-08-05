@@ -4,3 +4,9 @@
     align-items: center;
     border-bottom: 2px solid black;
 }
+
+.btn {
+    border-radius: 100px;
+    background-color: white;
+    color: black;
+}

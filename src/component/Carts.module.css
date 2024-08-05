@@ -1,5 +1,5 @@
 .container {
-    background-color: white;
+    background-color: whitesmoke;
     border: 2px solid white;
     border-radius: 4px;
     height: fit-content;
@@ -23,4 +23,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.btn {
+        background-color: orangered;
+        border-radius: 20px;
+        border: solid 0;
+        padding: 6px 0;
+        margin: 10px 0;
+        width: 350px;
 }
