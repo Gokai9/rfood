@@ -1,13 +1,16 @@
+import { useReducer } from "react";
 import { toFloat } from "../utils/helper";
-import { ICart } from "../utils/types";
+import { ICart, State } from "../utils/types";
 import styles from "./Cart.module.css"
+import { reducer } from "../reducer/reducer";
 
 interface I {
     cart: ICart,
-    deleteCart: (id: string) => void
 }
+const initialState: State = {carts: []}
+export default function Cart({cart}: I) {
+    const [state, dispatch] = useReducer(reducer, initialState)
 
-export default function Cart({cart, deleteCart}: I) {
     return (
         <div className={styles.container}>
             <div>
@@ -17,7 +20,7 @@ export default function Cart({cart, deleteCart}: I) {
                 <span>{toFloat(cart.amount * cart.price)}</span>
                 </p>
             </div>
-            <button className={styles.btn} onClick={() => deleteCart(cart.id)}>X</button>
+            <button className={styles.btn} onClick={() => dispatch({type: 'deleteCart', payload: cart})}>X</button>
         </div>
     )
 }

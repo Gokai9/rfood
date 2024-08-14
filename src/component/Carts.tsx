@@ -1,23 +1,27 @@
 import styles from './Carts.module.css'
 import EmptyCart from '../../public/assets/images/illustration-empty-cart.svg'
-import { Icarts } from '../utils/types'
+import { State } from '../utils/types'
 import Cart from './Cart'
 import { toFloat } from '../utils/helper'
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import Modal from './Modal'
+import { reducer } from '../reducer/reducer'
 
-export default function Carts({cartsD, deleteCart}: Icarts) {
+const initialState: State = {carts: []}
+export default function Carts() {
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const [c, setC] = useState<State>(state)
     const [showModal, setShowModal] = useState(false)
-    const total = cartsD.reduce((acc, curValue) => {
+    const total = c.carts.reduce((acc, curValue) => {
         return acc += curValue.amount * curValue.price
     }, 0)
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Your Cart ({cartsD.length})</h1>
-            {showModal ? <Modal carts={cartsD} total={toFloat(total)}/>: null}
-            {cartsD.length > 0 ?
+            <h1 className={styles.title}>Your Cart ({c.carts.length})</h1>
+            {showModal ? <Modal carts={c.carts} total={toFloat(total)}/>: null}
+            {c.carts.length > 0 ?
             <div className={styles.scart}>
-            {cartsD.map((c) => <Cart key={c.id} cart={c} deleteCart={deleteCart}/>)}
+            {c.carts.map((c) => <Cart key={c.id} cart={c}/>)}
             <p><span>Order Total: </span> <span>{toFloat(total)}</span></p>
             <button className={styles.btn} onClick={() => setShowModal(true)}>Confirm order</button>
             </div>: 

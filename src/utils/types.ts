@@ -15,7 +15,7 @@ export interface  Ide {
 }
 
 export interface ICart {
-    id: string,
+    "id": string;
     "image": {
         "thumbnail": string;
         "mobile": string;
@@ -24,7 +24,8 @@ export interface ICart {
    },
    "name": string;
    "amount": number;
-   "price": number
+   "price": number;
+   "show": boolean;
 }
 
 export interface Icarts {
@@ -35,4 +36,14 @@ export interface CC {
     handleCart: (ic: ICart) => void,
     updateAmount: (id: string, amount: number) => void,
     deleteCart: (id: string) => void
+}
+
+export interface Action {
+    type: string;
+    payload: ICart;
+    amount?: number;
+}
+
+export interface State {
+    carts: ICart[];
 }

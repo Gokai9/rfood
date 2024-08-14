@@ -1,37 +1,33 @@
 import styles from './Product.module.css'
-import { Idessert, ICart} from '../utils/types';
+import { Idessert, ICart, State} from '../utils/types';
 import { toFloat } from '../utils/helper';
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
+import { reducer } from '../reducer/reducer';
 
 interface BB {
     prod: Idessert,
-    handleCart: (ic: ICart) => void,
-    updateAmount: (id: string, amount: number) => void,
-    deleteCart: (id: string) => void
 }
-
-export default function Product({prod, handleCart, updateAmount, deleteCart}: BB) {
+ 
+const initialState: State = {carts: []}
+export default function Product({prod}: BB) {
+    const id = window.btoa(prod.category + prod.name)
+    const [state, dispatch] = useReducer(reducer, initialState)
     const [addAmount, setAddAmount] = useState(0)
     const [show, setShow] = useState(false)
-    const reduceOne = (id: string) => {
+    const reduceOne = (cart: ICart) => {
         setAddAmount(addAmount - 1)
-        updateAmount(id, -1)
-        if (addAmount <= 1) {
-          setShow(false)
-          deleteCart(id)
-        }
+        dispatch({type: 'subAmount', payload: cart})
+        setShow(state.carts.filter(cart => cart.id === id)[0].show)
     }
-    const addOne = (id: string) => {
+    const addOne = (cart: ICart) => {
         setAddAmount(addAmount + 1)
-        updateAmount(id, 1)
+        dispatch({type: 'addAmount', payload: cart})
     }
-    const id = window.btoa(prod.category + prod.name)
-    const but = <button className={styles.btnone}><input type='button' value={'-'} onClick={() => reduceOne(id)} /><span>{addAmount}</span><input type='button' value={'+'} onClick={() => addOne(id)}/></button>
+    const but = <button className={styles.btnone}><input type='button' value={'-'} onClick={() => reduceOne({...prod, id: id, amount: addAmount, show: true})} /><span>{addAmount}</span><input type='button' value={'+'} onClick={() => addOne({...prod, id: id, amount: addAmount, show: true})}/></button>
     const addbut = <button className={styles.btn} 
     onClick={() => {
-        handleCart({id: id, image: {...prod.image}, name: prod.name, amount: 1, price: prod.price})
+        dispatch({type: 'addCart', payload: {id: id, image: {...prod.image}, name: prod.name, amount: 1, price: prod.price, show: true}})
         setAddAmount(addAmount + 1)
-        setShow(true)
     }}>
         Add to cart
         </button>

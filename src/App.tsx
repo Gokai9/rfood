@@ -1,34 +1,22 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
 import './App.css'
 import Carts from './component/Carts'
 import DessertsList from './component/DessertsList'
-import { ICart} from './utils/types'
+import { reducer, cartsContext, cartsDispatchContext } from './reducer/reducer'
+import { State } from './utils/types'
 
-
+const initialState: State = {carts: []}
 function App() {
-  const [cartsD, setCartsD] = useState<ICart[]>([])
-  
-  const updateAmount = (id:string, amount: number) => {
-    const cart = cartsD.filter(c => {
-      if (c.id === id) {
-        c.amount += amount
-        return c
-      }
-      return c
-    })
-    setCartsD([...cart])
-  }
-  const handleCart = (ic: ICart) => {
-    setCartsD([...cartsD, ic])
-}
-  const deleteCart = (id: string) => {
-    const carts = cartsD.filter(cart => cart.id !== id)
-    setCartsD(carts)
-  }
+  const [state, dispatch] = useReducer(reducer, initialState)
   return (
     <div className='app'>
-      <DessertsList handleCart={handleCart} updateAmount={updateAmount} deleteCart={deleteCart}/>
-      <Carts cartsD={cartsD} deleteCart={deleteCart}/>
+      <cartsContext.Provider value={state}>
+        <cartsDispatchContext.Provider value={dispatch}>
+        <DessertsList />
+        <Carts />
+        </cartsDispatchContext.Provider>
+      </cartsContext.Provider>
+      
     </div>
   )
 }
