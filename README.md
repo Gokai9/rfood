@@ -13,8 +13,6 @@ This is a solution to the [Product list with cart challenge on Frontend Mentor](
   - [Continued development](#continued-development)
 - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -30,7 +28,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Add live site URL here](https://rfood-8afm.vercel.app/)
 
 ## My process
 
@@ -40,11 +38,10 @@ Users should be able to:
 - CSS Module
 - [React](https://reactjs.org/) - JS library
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
-
 ### What I learned
 
-How to make react more user interactive where user can add product to cart
+- Use react with Typescript
+- Use Create Context and UseContext hook
 
 ### Continued development
 
