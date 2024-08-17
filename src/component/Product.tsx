@@ -2,12 +2,11 @@ import styles from './Product.module.css'
 import { ICart, Ide} from '../utils/types';
 import { toFloat } from '../utils/helper';
 import { useContext, useState } from 'react';
-import { cartsContext, cartsDispatchContext} from '../reducer/reducer';
+import { cartsDispatchContext} from '../reducer/reducer';
 import Icon from './Icon';
 
 export default function Product({prod}: Ide) {
     const id = window.btoa(prod.category + prod.name)
-    const state = useContext(cartsContext)
     const dispatch = useContext(cartsDispatchContext)
     const [addAmount, setAddAmount] = useState(0)
     const [show, setShow] = useState(false)

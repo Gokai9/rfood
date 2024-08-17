@@ -1,4 +1,3 @@
-import { toFloat } from "../utils/helper"
 import { ICart } from "../utils/types"
 import Button from "./Button"
 import CartModal from "./CartModal"
