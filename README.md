@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://rfood-8afm.vercel.app/)
+- Live Site URL: [R Food](https://rfood-8afm.vercel.app/)
 
 ## My process
 
