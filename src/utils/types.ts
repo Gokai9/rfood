@@ -28,20 +28,10 @@ export interface ICart {
    "show": boolean;
 }
 
-export interface Icarts {
-    "cartsD": ICart[],
-    deleteCart: (id: string) => void
-}
-export interface CC {
-    handleCart: (ic: ICart) => void,
-    updateAmount: (id: string, amount: number) => void,
-    deleteCart: (id: string) => void
-}
-
 export interface Action {
     type: string;
     payload: ICart;
-    amount?: number;
+    show?: boolean
 }
 
 export interface State {

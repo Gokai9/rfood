@@ -1,16 +1,15 @@
-import { useReducer } from "react";
+import { useContext } from "react";
 import { toFloat } from "../utils/helper";
-import { ICart, State } from "../utils/types";
+import { ICart} from "../utils/types";
 import styles from "./Cart.module.css"
-import { reducer } from "../reducer/reducer";
+import { cartsDispatchContext } from "../reducer/reducer";
 
 interface I {
     cart: ICart,
 }
-const initialState: State = {carts: []}
-export default function Cart({cart}: I) {
-    const [state, dispatch] = useReducer(reducer, initialState)
 
+export default function Cart({cart}: I) {
+    const dispatch = useContext(cartsDispatchContext)
     return (
         <div className={styles.container}>
             <div>
